@@ -1,0 +1,82 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans';
+}
+
+button{
+    background-color: #6f429a;
+    color: white;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.container{
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+header{
+    color: #202020;
+    margin-bottom: 20px;
+}
+
+header h1{
+    color: black;
+    margin-bottom: 10px;
+}
+
+header h2{
+    color: #6f429a;
+}
+
+header .links{
+    margin: 20px auto 10px auto;
+    float: left;
+    list-style-type: none;
+    width: 100%;
+}
+
+.links li{
+    float: left;
+    margin: 0 5px;
+}
+
+.links a svg{
+    height: 20px;
+    fill: #6f429a;
+}
+
+hr{
+    border-top: 2px solid #6f429a;
+    width: 100px;
+}
+
+.intro{
+    margin-bottom: 50px;
+}
+
+.intro h2{
+    margin-bottom: 4px;
+}
+
+.intro ul{
+    float: left;
+    list-style-type: none;
+    margin: 2px auto;
+}
+
+.intro li{
+    float: left;
+    margin-right: 5px;
+}
+
+.intro button{
+    font-size: 12px;
+}
+
+.projects .col{
+    width: 50%;
+}
