@@ -11,19 +11,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="authoring-tool" content="Adobe_Animate_CC">
-<title>pert4</title>
+<title>jan</title>
 <!-- write your code here -->
 <script src="libs/createjs-2015.11.26.min.js"></script>
-<script src="pert4.js?1574966530415"></script>
+<script src="jan.js?1643066619981"></script>
 <script>
 var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
 function init() {
 	canvas = document.getElementById("canvas");
 	anim_container = document.getElementById("animation_container");
 	dom_overlay_container = document.getElementById("dom_overlay_container");
-	var comp=AdobeAn.getComposition("33A9CFE835F6F648A052DE1C00DBB143");
+	var comp=AdobeAn.getComposition("DE7E38303B93054C855221C292C29D5D");
 	var lib=comp.getLibrary();
 	var loader = new createjs.LoadQueue(false);
+	loader.installPlugin(createjs.Sound);
 	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
 	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
 	var lib=comp.getLibrary();
@@ -42,39 +43,14 @@ function handleComplete(evt,comp) {
 	for(i=0; i<ssMetadata.length; i++) {
 		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
 	}
-	exportRoot = new lib.pert4();
+	exportRoot = new lib.jan();
 	stage = new lib.Stage(canvas);
 	stage.enableMouseOver();	
 	//Registers the "tick" event listener.
 	fnStartAnimation = function() {
 		stage.addChild(exportRoot);
 		createjs.Ticker.setFPS(lib.properties.fps);
-		createjs.Ticker.addEventListener("tick", stage)
-		stage.addEventListener("tick", handleTick)
-		function handleTick(event) {
-			var cameraInstance = exportRoot.___camera___instance;
-			if(cameraInstance)
-			{
-				var stageCenter = { 'x' : lib.properties.width/2, 'y' : lib.properties.height/2 };
-				if(cameraInstance._off != null && cameraInstance._off == true)
-					exportRoot.transformMatrix = new createjs.Matrix2D();
-				else
-				{
-					if(cameraInstance.pinToObject !== undefined)
-					{
-						cameraInstance.x = cameraInstance.pinToObject.x + cameraInstance.pinToObject.pinOffsetX;
-						cameraInstance.y = cameraInstance.pinToObject.y + cameraInstance.pinToObject.pinOffsetY;
-					}
-					var mat = cameraInstance.getMatrix();
-					mat.tx -= stageCenter.x;
-					mat.ty -= stageCenter.y;
-					var inverseMat = mat.invert();
-					inverseMat.prependTransform(stageCenter.x, stageCenter.y, 1, 1, 0, 0, 0, 0, 0);
-					inverseMat.appendTransform(-stageCenter.x, -stageCenter.y, 1, 1, 0, 0, 0, 0, 0);
-					exportRoot.transformMatrix = inverseMat;
-				}
-			}
-		}
+		createjs.Ticker.addEventListener("tick", stage);
 	}	    
 	//Code to support hidpi screens and responsive scaling.
 	function makeResponsive(isResp, respDim, isScale, scaleType) {		
@@ -116,13 +92,16 @@ function handleComplete(evt,comp) {
 	AdobeAn.compositionLoaded(lib.properties.id);
 	fnStartAnimation();
 }
+function playSound(id, loop) {
+	return createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+}
 </script>
 <!-- write your code here -->
 </head>
 <body onload="init();" style="margin:0px;">
-	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:550px; height:400px">
-		<canvas id="canvas" width="550" height="400" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
-		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:550px; height:400px; position: absolute; left: 0px; top: 0px; display: block;">
+	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:1280px; height:720px">
+		<canvas id="canvas" width="1280" height="720" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1280px; height:720px; position: absolute; left: 0px; top: 0px; display: block;">
 		</div>
 	</div>
 </body>
